@@ -9,7 +9,21 @@
 */
 
 function calculateTotalSpentByCategory(transactions) {
-  return [];
+  let map = {}
+  transactions.forEach((tx) => {
+    if(map[tx['category']]){
+      map[tx['category']] += tx['price']
+    }
+    else{
+      map[tx['category']] = tx['price']
+    }
+  })
+
+  let ans = []
+  Object.keys(map).forEach((item)=>{
+    ans.push({"category": item, "totalSpent":map[item]})
+  })
+  return ans;
 }
 
 module.exports = calculateTotalSpentByCategory;
